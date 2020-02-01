@@ -1,4 +1,6 @@
-%This function is used for eleminating orderblocks form 
+%In this work the top left 64 by 64 block is used for hiding size of matrix pattern and block size that a user selected. 
+%Also, order blocks use for hiding the location of blocks which are ordered by a pre-processing work 
+%In this program 'B' by 'B' blocks that have overlap with order blocks will be detected and eliminated from the list.
 function [queue_MP_w_f queue_MP_h_f] = Eliminating_blocks_with_overlap_by_orderblocks(img,t1,t2,t3,a11,a21,a12,a22)
 if nargin==4, t1=64;t2=64;t3=48; end
 
