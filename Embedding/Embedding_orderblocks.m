@@ -1,3 +1,4 @@
+%This function hides the ordered blocks 
 function [img, txt, continue_t]=Embedding_orderblocks(charac,txt,img,t,t_c)
 if nargin==3
 t=3;
@@ -44,7 +45,7 @@ if(invalid_blo==0)
 end
 end
 
-% this part use for puting the end of block point or end of text point
+% this part use for hiding end of message
 
 if(isempty(txt)==1)
     if(num~=0) 
