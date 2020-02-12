@@ -81,9 +81,7 @@ MPqueue=[];
 vector=(t1-1)*t2; % maximum halat ofoghi
 horizontal=(t2-1)*t1;% maximum halat amodi
 di_1=(t1-1)*(t1-1);% maximum halat ghotri
-%for i=1:t1-2
-   % di_1=di_1+(2*i);
-%end
+
 di_2=di_1;
 total=horizontal+di_1+di_2;
 
@@ -265,53 +263,11 @@ variance=var(double(arr));
       numh=[numh hh];
       count=count+1;
    end
-   
- 
- 
- end%***********************************************************************
-end %**************************************************************************
-
-% figure,
-% imshow(img);
-% hold on;
-% for i=1:length(numh)
-% 
-% plot([(numw(i)-1)*t2+1 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+1 (numw(i)-1)*t2+1],...
-%          [(numh(i)-1)*t1+1 (numh(i)-1)*t1+1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+1],...
-%          'y','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh1)
-% 
-% plot([(numw1(i)-1)*t2+1 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+1 (numw1(i)-1)*t2+1],...
-%          [(numh1(i)-1)*t1+1 (numh1(i)-1)*t1+1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+1],...
-%          'r','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh2)
-% 
-% plot([(numw2(i)-1)*t2+1 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+1 (numw2(i)-1)*t2+1],...
-%          [(numh2(i)-1)*t1+1 (numh2(i)-1)*t1+1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+1],...
-%          'g','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh3)
-% 
-% plot([(numw3(i)-1)*t2+1 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+1 (numw3(i)-1)*t2+1],...
-%          [(numh3(i)-1)*t1+1 (numh3(i)-1)*t1+1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+1],...
-%          'b','LineWidth',2);
-% end
-%  hold off;
+ end
+end 
 
  queue_MP_w=[s_c_w1 s_c_w2 s_c_w3 e_c_w1 e_c_w2 e_c_w3 e_s_w1 e_s_w2 e_s_w3  s_s_w1  s_s_w2  s_s_w3];
  queue_MP_h=[s_c_h1 s_c_h2 s_c_h3 e_c_h1 e_c_h2 e_c_h3 e_s_h1 e_s_h2 e_s_h3  s_s_h1  s_s_h2  s_s_h3];
- 
  
  ft=length(queue_MP_w);
 loos_blo=0;
