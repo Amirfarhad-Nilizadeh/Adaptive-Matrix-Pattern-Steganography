@@ -2,10 +2,7 @@ function [queue_MP_w_f, queue_MP_h_f] = Preprocessing_algorithm(img,t1)
 if nargin==1, t1=64;t2=64; end
 img_i=Intensity(img);
 t2=t1;
-
 [row_size,column_size]=size(img_i);
-%%[hh,ww]=size(img_i);
-
 nh=fix(row_size/t1);
 nw=fix(column_size/t2);
 
@@ -65,10 +62,8 @@ count_s_s_1=0;
 count_s_s_2=0;
 count_s_s_3=0;
 
-
- queue_MP_h_f=[];
- queue_MP_w_f=[];
-
+queue_MP_h_f=[];
+queue_MP_w_f=[];
 
 flag_q=0;
 MPqueue=[];
@@ -252,64 +247,8 @@ variance=var(double(arr));
       numh=[numh row_size];
       count=count+1;
    end
-   
- 
- 
-  end%***********************************************************************
-end %**************************************************************************
-
-% figure,
-% imshow(img);
-% hold on;
-% for i=1:length(numh)
-% 
-% plot([(numw(i)-1)*t2+1 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+1 (numw(i)-1)*t2+1],...
-%          [(numh(i)-1)*t1+1 (numh(i)-1)*t1+1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+1],...
-%          'y','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh1)
-% 
-% plot([(numw1(i)-1)*t2+1 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+1 (numw1(i)-1)*t2+1],...
-%          [(numh1(i)-1)*t1+1 (numh1(i)-1)*t1+1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+1],...
-%          'r','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh2)
-% 
-% plot([(numw2(i)-1)*t2+1 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+1 (numw2(i)-1)*t2+1],...
-%          [(numh2(i)-1)*t1+1 (numh2(i)-1)*t1+1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+1],...
-%          'g','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh3)
-% 
-% plot([(numw3(i)-1)*t2+1 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+1 (numw3(i)-1)*t2+1],...
-%          [(numh3(i)-1)*t1+1 (numh3(i)-1)*t1+1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+1],...
-%          'b','LineWidth',2);
-% end
-% hold off;
-% %  count_s_c_1
-% %  count_s_c_2
-% %  count_s_c_3
-% %  count_e_c_1
-% %  count_e_c_2
-% %  count_e_c_3
-% %  
-% %  count_e_s_1
-% %  count_e_s_2
-% %  count_e_s_3
-% %  count_s_s_1=0
-% %  count_s_s_2=0
-% %  count_s_s_3=0
-
-
+  end
+end 
 
  queue_MP_w_f=[s_c_w1 s_c_w2 s_c_w3 e_c_w1 e_c_w2 e_c_w3 e_s_w1 e_s_w2 e_s_w3  s_s_w1  s_s_w2  s_s_w3];
  queue_MP_h_f=[s_c_h1 s_c_h2 s_c_h3 e_c_h1 e_c_h2 e_c_h3 e_s_h1 e_s_h2 e_s_h3  s_s_h1  s_s_h2  s_s_h3];
