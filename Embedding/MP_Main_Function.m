@@ -1,6 +1,6 @@
 clear
 clc
-D ='/home/amirfarhad/Desktop/Steganography/ppm-images';
+D ='/Address of Image';
 
 d = {'T', 'D'};
 csvwrite ('Result-ten.ods', d);
@@ -105,9 +105,6 @@ img_g=img_t(:,:,2);
 
 [hh_init,ww_init]=size(b_first);
 
-%nh_initial=fix(hh_init/Block_size);
-%nw_initial=fix(ww_init/Block_size);
-
 nh_initial=fix(hh_init/Block_size_orderblock);
 nw_initial=fix(ww_init/Block_size_orderblock);
 
@@ -196,7 +193,7 @@ text1_temp=[text1_temp ']'];
 
 blo_num_first=1;
 
-c_b=1; % counter_block
+c_b=1; 
 if(isempty(w)==1)% in this case the valuses that certain the correspondence of the other blocks could not be hidden in the image 
     fprintf('Warning: No message can be hidden in this image. Please change the cover image\n');
     continue;
@@ -230,9 +227,6 @@ test_work=0;
 capacity = length(w); % number of blocks chosen for hidding
 while ((~isempty(text) || c_b==0)&& blo_num ~=capacity+1 )
     test_work = test_work+1;
-   % if (test_work==56)
-    %    display('Test');
-    %end
     img = b((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size);
     img_g2 = img_g((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size);
    [ch1, n] = MP_Generation(img_g2,MP_size_row,MP_size_column);
@@ -245,49 +239,28 @@ while ((~isempty(text) || c_b==0)&& blo_num ~=capacity+1 )
         three_layers_of_stego_block = Cover_Image((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size,1:2);
         three_layers_of_stego_block(:,:,3) = img;
         block = nw*(h(blo_num)-1)+w(blo_num);
-       % Block_Dataset_Steganalysis(three_layers_of_stego_block, old_text_size,new_text_size, Block_size, MP_size_row, MP_size_column, block); % Dataset for blocks
    end
     
     b1((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size)=img;
     blo_num = blo_num+1;
 end
 
-
 tEnd = toc(tStart);
-
-
 
 if  ~isempty(text)
      numb_of_hidd_char=ltxt-length(text);
      Stego_image=Cover_Image;
      Stego_image(:,:,3)=b1;
-     %imwrite(Stego_image,'Stego_Image.ppm');
-     folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/not-suitable/ten-percent';
+     folder='Address of Folder for saving the generated Stego-image';
      imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
-     
-%      if numb_of_hidd_char==0 % in this case no character could be hidden in the cover image with selected valuse
-%          fprintf('Warning: No character is hidden in the selected image and sizes\n');
-%      else
-%          fprintf('Warning: There is not enough capacity for hiding whole text message\n');
-%          disp(['The number of hidden character is : ',num2str(numb_of_hidd_char)])
-%      end
     
-else
-   % disp(['Whole characters are hidden, the number of hidden character is : ',num2str(ltxt)])
+else %In the else part all of the secret message could not be hidden in the selected cover image.
     numb_of_hidd_char = ltxt-length(text);
      Stego_image = Cover_Image;
      Stego_image(:,:,3) = b1;
-     %imwrite(Stego_image,'Stego_Image.ppm');
-     folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/suitable/ten-percent';
+     folder='Address of Folder for saving the generated Stego-image';
      imwrite(Stego_image,fullfile(folder,sprintf('%d.ppm',k)));
 end
-
-% %useful_block   
-% Stego_image=Cover_Image;
-% Stego_image(:,:,3)=b1;
-% %imwrite(Stego_image,'Stego_Image.ppm');
-% folder='C:\Users\amirf\Desktop\desktop2\Desktop\adaptive_MP\Final_Code_and_Results_of_adaptive_MP\MP_Steganalysis\Boosbased-results\MP\five-percent-capacity';
-% imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
 end
 change = sum(Cover_Image(:)~=Stego_image(:))/numel(Cover_Image);
 d= [tEnd, change];
