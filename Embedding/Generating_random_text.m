@@ -4,8 +4,6 @@ for i=1:N
     s{i} = char(i);
 end
 
-%s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-%find number of random characters to choose from
 numRands = length(s);
 %specify length of random string to generate
 sLength = 3277; %10 percent of image
