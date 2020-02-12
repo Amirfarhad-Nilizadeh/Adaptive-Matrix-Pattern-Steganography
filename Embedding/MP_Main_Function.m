@@ -1,17 +1,14 @@
 clear
 clc
-D ='/Address of Image';
+D ='/Address of Cover Image/';
 
 d = {'T', 'D'};
 csvwrite ('Result-ten.ods', d);
-
 
 S = dir(fullfile(D,'*.ppm')); 
 Block_size = 128;
 MP_size_row = 3;
 MP_size_column = 2;
-
-
 
 Block_size_orderblocks=64;
 MP_size_row_orderblocks=3;
@@ -25,14 +22,9 @@ Block_size_orderblock = 64;
 for k = 1:10000
     file = fullfile(D,S(k).name);
     Cover_Image = imread(file); 
-
-%Cover_Image=imread('1.ppm');
 Generating_random_text;
 Secret_Message=fileread('random.txt');
-%ltxt=length(Secret_Message)
 [row_size_cover,column_size_cover]= size(Cover_Image(:,:,3));
-
-
 
 %Size_Checker= 1; %For checkin the values which are selected by user
 
