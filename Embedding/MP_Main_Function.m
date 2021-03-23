@@ -26,53 +26,9 @@ for k = 1:10000
     file = fullfile(D,S(k).name);
     Cover_Image = imread(file); 
 
-%Cover_Image=imread('1.ppm');
 Generating_random_text;
 Secret_Message=fileread('random.txt');
-%ltxt=length(Secret_Message)
 [row_size_cover,column_size_cover]= size(Cover_Image(:,:,3));
-
-
-
-%Size_Checker= 1; %For checkin the values which are selected by user
-
-% while(Size_Checker==1)
-%     
-%     Block_size=input('Enter a poitive integer number as a Block Size:\n');% Block_size = 64 is recommended 
-%     while(fix(Block_size)-Block_size~=0 || Block_size<1)
-%         display('Warning: Block Size should be a positive integere.');
-%         Block_size=input('Enter a positive integer number as a Block Size (Block_size = 64 is recommended):\n');
-%     end
-%     
-%     while(floor(row_size_cover/2)<Block_size && floor(column_size_cover/2)<Block_size)
-%         display('Warning: Selected Block Size is not suitable based on size of Cover Image. Select a smaller Block Size');
-%         Block_size=input('Enter a positive integer number as a Block Size (Block_size = 64 is recommended):\n');
-%     end
-%     
-%     MP_size_row=input('Enter the Matrix Pattern Row Size:\n');% MP_size_row = 3 is recommended 
-% 
-%     while(fix(MP_size_row)-MP_size_row~=0 || MP_size_row<1)
-%         display('Warning: Selected input should be a positive integere.');
-%         MP_size_row=input('Enter a positive integer number as a Matrix Pattern Row size (3 is recommended):\n');
-%     end
-% 
-%     MP_size_column=input('Enter the Matrix Pattern column Size:\n');% MP_size_column = 2 is recommended 
-% 
-%     while(fix(MP_size_column)-MP_size_column~=0 || MP_size_column<1)
-%         display('Warning: Selected input should be a positive integere.');
-%         MP_size_column=input('Enter a positive integer number as a Matrix Pattern column size (2 is recommended):\n');
-%     end
-% 
-%     Size_Checker=0;
-% 
-%     if((Block_size-MP_size_row+1)*(Block_size-MP_size_column+1)<256 || MP_size_row>Block_size|| MP_size_column>Block_size ||(MP_size_row-1)*(MP_size_column)<3)
-%         Size_Checker=1;
-%         display('Warning: Selected sizes are not suitable, Please follow the instruction:');
-%         display('1) Block size value should be greater than Row and Column sizes');
-%         display('2) Generating 95 unique Matrix Pattern Based on selected Block size and Matrix Pattern sizes is impossible\n')
-%         display('Please enter new values');
-%     end
-% end
 
 
 tStart = tic;
@@ -105,9 +61,6 @@ img_g=img_t(:,:,2);
 
 [hh_init,ww_init]=size(b_first);
 
-%nh_initial=fix(hh_init/Block_size);
-%nw_initial=fix(ww_init/Block_size);
-
 nh_initial=fix(hh_init/Block_size_orderblock);
 nw_initial=fix(ww_init/Block_size_orderblock);
 
@@ -130,9 +83,9 @@ text1=[text1 ']'];
 
 blo_num_first=1;
 
-c_b=1; % counter_block
-ss=0; % smooth and simple for seeds
-if(isempty(ww)==1)% in this case the valuses that certain the correspondence of the other blocks could not be hidden in the image 
+c_b=1; 
+ss=0;
+if(isempty(ww)==1)
     fprintf('Warning: No message can be hidden in this image. Please change the cover image\n');
     disp(['Image id : ',num2str(k)]);
     continue;
@@ -157,9 +110,9 @@ else
          [img, text1, c_b] = Embedding_orderblocks(ch1,text1,img);
          area11 = [area11 (hh_initial(blo_num_first)-1)*Block_size_orderblocks+1];% the location of the beginning row
          area21 = [area21 (hh_initial(blo_num_first)-1)*Block_size_orderblocks+1]; % the beginning of the first column
-         area22 = [area22 (ww_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks]; % the location of the end column      
+         area22 = [area22 (ww_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks];     
          hh1 = [hh1 hh_initial(blo_num_first)];
-         area12 = [area12 (ww_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks];% the location of the end row % if b_s and Block_size_orderblocks become equal we need this value for knowing the location of a block that hidden the thr an del
+         area12 = [area12 (ww_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks];
          ww1 = [ww1 ww_initial(blo_num_first)];
          s=img_t((hh_initial(blo_num_first)-1)*Block_size_orderblocks+1:(hh_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks,(ww_initial(blo_num_first)-1)*Block_size_orderblocks+1:(ww_initial(blo_num_first)-1)*Block_size_orderblocks+Block_size_orderblocks,1:2);
          s(:,:,3)=img;
@@ -174,7 +127,7 @@ if Block_size==Block_size_orderblocks
         for j=1:length(ww1)
             if(ww(i)==ww1(j)&& hh1(j)==hh(i))
                 flag=1;
-                ob=ob+1; %overlap blocks between real "thr" and "del" with "200" and "50" for hidding the "thr" and "del".
+                ob=ob+1;
                 break;
             end
         end
@@ -197,7 +150,7 @@ text1_temp=[text1_temp ']'];
 blo_num_first=1;
 
 c_b=1; % counter_block
-if(isempty(w)==1)% in this case the valuses that certain the correspondence of the other blocks could not be hidden in the image 
+if(isempty(w)==1)
     fprintf('Warning: No message can be hidden in this image. Please change the cover image\n');
     continue;
 else
@@ -230,9 +183,6 @@ test_work=0;
 capacity = length(w); % number of blocks chosen for hidding
 while ((~isempty(text) || c_b==0)&& blo_num ~=capacity+1 )
     test_work = test_work+1;
-   % if (test_work==56)
-    %    display('Test');
-    %end
     img = b((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size);
     img_g2 = img_g((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size);
    [ch1, n] = MP_Generation(img_g2,MP_size_row,MP_size_column);
@@ -245,49 +195,27 @@ while ((~isempty(text) || c_b==0)&& blo_num ~=capacity+1 )
         three_layers_of_stego_block = Cover_Image((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size,1:2);
         three_layers_of_stego_block(:,:,3) = img;
         block = nw*(h(blo_num)-1)+w(blo_num);
-       % Block_Dataset_Steganalysis(three_layers_of_stego_block, old_text_size,new_text_size, Block_size, MP_size_row, MP_size_column, block); % Dataset for blocks
    end
     
     b1((h(blo_num)-1)*Block_size+1:(h(blo_num)-1)*Block_size+Block_size,(w(blo_num)-1)*Block_size+1:(w(blo_num)-1)*Block_size+Block_size)=img;
     blo_num = blo_num+1;
 end
 
-
 tEnd = toc(tStart);
-
-
 
 if  ~isempty(text)
      numb_of_hidd_char=ltxt-length(text);
      Stego_image=Cover_Image;
      Stego_image(:,:,3)=b1;
-     %imwrite(Stego_image,'Stego_Image.ppm');
      folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/not-suitable/ten-percent';
      imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
-     
-%      if numb_of_hidd_char==0 % in this case no character could be hidden in the cover image with selected valuse
-%          fprintf('Warning: No character is hidden in the selected image and sizes\n');
-%      else
-%          fprintf('Warning: There is not enough capacity for hiding whole text message\n');
-%          disp(['The number of hidden character is : ',num2str(numb_of_hidd_char)])
-%      end
-    
 else
-   % disp(['Whole characters are hidden, the number of hidden character is : ',num2str(ltxt)])
     numb_of_hidd_char = ltxt-length(text);
      Stego_image = Cover_Image;
      Stego_image(:,:,3) = b1;
-     %imwrite(Stego_image,'Stego_Image.ppm');
      folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/suitable/ten-percent';
      imwrite(Stego_image,fullfile(folder,sprintf('%d.ppm',k)));
 end
-
-% %useful_block   
-% Stego_image=Cover_Image;
-% Stego_image(:,:,3)=b1;
-% %imwrite(Stego_image,'Stego_Image.ppm');
-% folder='C:\Users\amirf\Desktop\desktop2\Desktop\adaptive_MP\Final_Code_and_Results_of_adaptive_MP\MP_Steganalysis\Boosbased-results\MP\five-percent-capacity';
-% imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
 end
 change = sum(Cover_Image(:)~=Stego_image(:))/numel(Cover_Image);
 d= [tEnd, change];

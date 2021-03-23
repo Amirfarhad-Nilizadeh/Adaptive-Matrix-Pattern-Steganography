@@ -44,7 +44,7 @@ if(invalid_blo==0)
 end
 end
 
-% this part use for puting the end of block point or end of text point
+% this part use for putting the end of block point or end of text point
 
 if(isempty(txt)==1)
     if(num~=0) 
@@ -72,11 +72,11 @@ if(isempty(txt)==1)
                 w=1;h=h+1;
             end
             if(num==0 && invalid_blo==1)
-                continue_t=0;  % when secret message is finished but we do not have a t1xt2 matrix to hide "end of message" pattern in this block, in this case we embed the "end of message" pattern in the next selected B*B block, and if current B*B block is the last block in this image or next block(s) dosent have any space for hidding no error will happen
+                continue_t=0;  % When all the secret message characters are embedded, but the block did not have more space to hide the "end of message" pattern in this block, in this case, we embed the "end of message" pattern in the next selected B by B block. If the current B by B block is the last block in this image or the next block(s) does not have any space for hiding, no error will happen.
             end
         end
     end
 else
-    continue_t=0;%if the last t1xt2 matrix of this block is used for hidding the last character of the message
+    continue_t=0; % if the last t1xt2 matrix of this block is used for hiding the last character of the message
 end
 end

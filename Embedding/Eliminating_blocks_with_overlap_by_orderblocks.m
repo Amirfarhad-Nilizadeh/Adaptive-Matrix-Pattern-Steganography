@@ -66,27 +66,19 @@ count_s_s_1=0;
 count_s_s_2=0;
 count_s_s_3=0;
 
-
- queue_MP_h_f=[];
-  queue_MP_w_f=[];
+queue_MP_h_f=[];
+queue_MP_w_f=[];
 
 q=length(a11);
-
 
 flag_q=0;
 MPqueue=[];
 
-vector=(t1-1)*t2; % maximum halat ofoghi
-horizontal=(t2-1)*t1;% maximum halat amodi
-di_1=(t1-1)*(t1-1);% maximum halat ghotri
-%for i=1:t1-2
-   % di_1=di_1+(2*i);
-%end
+vector=(t1-1)*t2; 
+horizontal=(t2-1)*t1;
+di_1=(t1-1)*(t1-1);
 di_2=di_1;
 total=horizontal+di_1+di_2;
-
-
-
 
 for hh=1:nh
     for ww=1:nw
@@ -116,21 +108,21 @@ for hh=1:nh
         for i=1:h
             for j=1:w-1
                 if test(i,j)~= test(i,j+1)
-                    nu1=nu1+1;   % taghirat satri
+                    nu1=nu1+1;   
                 end
             end
         end
          for i=1:h-1
             for j=1:w
                  if test(i,j)~= test(i+1,j)
-                    nu2=nu2+1;   %taghirat sotoni
+                    nu2=nu2+1;  
                 end
             end
          end
          
          
         
-for i=1:h % baraye moghayese ghotri,start from upper left corner of binary block
+for i=1:h 
     z=i;
     for j=1:h-z
         if test(i+j-1,j)~= test(i+j,j+1)
@@ -149,7 +141,7 @@ end
   
 
 
-z=h+1;   % baraye moghayese ghotri,start from upper right corner of binary block
+z=h+1;   
 for i=1:h
     z=z-1;
     for j=1:h-i;
@@ -170,9 +162,7 @@ for i=2:h
     end
 end
    
-%if (ww==11 && hh==20)
-%    disp('stop');
-%end
+
 vec=nu1/vector;
 hor=nu2/horizontal;
 diag1=  dia_1/di_1;
@@ -269,51 +259,13 @@ variance=var(double(arr));
  end%***********************************************************************
 end %**************************************************************************
 
-% figure,
-% imshow(img);
-% hold on;
-% for i=1:length(numh)
-% 
-% plot([(numw(i)-1)*t2+1 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+t2 (numw(i)-1)*t2+1 (numw(i)-1)*t2+1],...
-%          [(numh(i)-1)*t1+1 (numh(i)-1)*t1+1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+t1 (numh(i)-1)*t1+1],...
-%          'y','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh1)
-% 
-% plot([(numw1(i)-1)*t2+1 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+t2 (numw1(i)-1)*t2+1 (numw1(i)-1)*t2+1],...
-%          [(numh1(i)-1)*t1+1 (numh1(i)-1)*t1+1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+t1 (numh1(i)-1)*t1+1],...
-%          'r','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh2)
-% 
-% plot([(numw2(i)-1)*t2+1 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+t2 (numw2(i)-1)*t2+1 (numw2(i)-1)*t2+1],...
-%          [(numh2(i)-1)*t1+1 (numh2(i)-1)*t1+1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+t1 (numh2(i)-1)*t1+1],...
-%          'g','LineWidth',2);
-% end
-% hold off;
-% 
-% hold on;
-% for i=1:length(numh3)
-% 
-% plot([(numw3(i)-1)*t2+1 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+t2 (numw3(i)-1)*t2+1 (numw3(i)-1)*t2+1],...
-%          [(numh3(i)-1)*t1+1 (numh3(i)-1)*t1+1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+t1 (numh3(i)-1)*t1+1],...
-%          'b','LineWidth',2);
-% end
-%  hold off;
-
  queue_MP_w=[s_c_w1 s_c_w2 s_c_w3 e_c_w1 e_c_w2 e_c_w3 e_s_w1 e_s_w2 e_s_w3  s_s_w1  s_s_w2  s_s_w3];
  queue_MP_h=[s_c_h1 s_c_h2 s_c_h3 e_c_h1 e_c_h2 e_c_h3 e_s_h1 e_s_h2 e_s_h3  s_s_h1  s_s_h2  s_s_h3];
  
  
  ft=length(queue_MP_w);
 loos_blo=0;
-if t1>t3 % dar in halat momken ast sare yeki az azlae block kochektar ke dar in halat blocki ast ke del,thr,b_s ra dar khod penhan karde ast dar block bozorgtar gharar girad. dakhel 
+if t1>t3 
     for p=1:ft
         in11=(queue_MP_h(p)-1)*t1+1;
         in21=(queue_MP_h(p)-1)*t1+t1;

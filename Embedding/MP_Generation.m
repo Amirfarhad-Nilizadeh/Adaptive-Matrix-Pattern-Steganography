@@ -1,5 +1,3 @@
-%choose pattern 
-%function [charac ch valid]=set_char(img,t)
 function [charac, ch]=MP_Generation(img,t,t_c)
 if nargin==1, t=3; t_c=3; end
 %valid=1;
@@ -11,13 +9,8 @@ cha=1;
 ch=1;
 cw=1;
 c1=0;
-%flag=0;M
 
 while cha~=(length(charac)+1)
-   % if cha==51
-    %    disp('hi');
-    %end
-    %im =img((ch-1)*t+1:(ch-1)*t+t,cw:cw+t_c-1);
     im =img(ch:ch+t-1,cw:cw+t_c-1);
     test1=im;
     test1=reshape(test1,1,t*t_c);
@@ -49,7 +42,6 @@ while cha~=(length(charac)+1)
         cha=cha+1;
     end
     c1=0;
-    %flag=0;
     
     cw=cw+1;
     if cw+t_c-1>ww
