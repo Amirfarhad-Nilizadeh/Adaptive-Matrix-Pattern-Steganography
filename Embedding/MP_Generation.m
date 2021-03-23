@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
+%choose pattern 
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 function [charac, ch]=MP_Generation(img,t,t_c)
 if nargin==1, t=3; t_c=3; end
-%valid=1;
 load charac;
 [hh,ww]=size(img);
 z=zeros(t,t_c);
@@ -41,8 +44,12 @@ while cha~=(length(charac)+1)
         charac(cha).mat =test;
         cha=cha+1;
     end
+<<<<<<< HEAD
     c1=0;
+=======
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
     
+    c1=0;    
     cw=cw+1;
     if cw+t_c-1>ww
         cw=1;ch=ch+1;

@@ -1,17 +1,14 @@
 clear
 clc
-D ='/home/amirfarhad/Desktop/Steganography/ppm-images';
+D ='/Address of Cover Image/';
 
 d = {'T', 'D'};
 csvwrite ('Result-ten.ods', d);
-
 
 S = dir(fullfile(D,'*.ppm')); 
 Block_size = 128;
 MP_size_row = 3;
 MP_size_column = 2;
-
-
 
 Block_size_orderblocks=64;
 MP_size_row_orderblocks=3;
@@ -25,11 +22,57 @@ Block_size_orderblock = 64;
 for k = 1:10000
     file = fullfile(D,S(k).name);
     Cover_Image = imread(file); 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 Generating_random_text;
 Secret_Message=fileread('random.txt');
 [row_size_cover,column_size_cover]= size(Cover_Image(:,:,3));
 
+<<<<<<< HEAD
+=======
+%Size_Checker= 1; %For checkin the values which are selected by user
+
+% while(Size_Checker==1)
+%     
+%     Block_size=input('Enter a poitive integer number as a Block Size:\n');% Block_size = 64 is recommended 
+%     while(fix(Block_size)-Block_size~=0 || Block_size<1)
+%         display('Warning: Block Size should be a positive integere.');
+%         Block_size=input('Enter a positive integer number as a Block Size (Block_size = 64 is recommended):\n');
+%     end
+%     
+%     while(floor(row_size_cover/2)<Block_size && floor(column_size_cover/2)<Block_size)
+%         display('Warning: Selected Block Size is not suitable based on size of Cover Image. Select a smaller Block Size');
+%         Block_size=input('Enter a positive integer number as a Block Size (Block_size = 64 is recommended):\n');
+%     end
+%     
+%     MP_size_row=input('Enter the Matrix Pattern Row Size:\n');% MP_size_row = 3 is recommended 
+% 
+%     while(fix(MP_size_row)-MP_size_row~=0 || MP_size_row<1)
+%         display('Warning: Selected input should be a positive integere.');
+%         MP_size_row=input('Enter a positive integer number as a Matrix Pattern Row size (3 is recommended):\n');
+%     end
+% 
+%     MP_size_column=input('Enter the Matrix Pattern column Size:\n');% MP_size_column = 2 is recommended 
+% 
+%     while(fix(MP_size_column)-MP_size_column~=0 || MP_size_column<1)
+%         display('Warning: Selected input should be a positive integere.');
+%         MP_size_column=input('Enter a positive integer number as a Matrix Pattern column size (2 is recommended):\n');
+%     end
+% 
+%     Size_Checker=0;
+% 
+%     if((Block_size-MP_size_row+1)*(Block_size-MP_size_column+1)<256 || MP_size_row>Block_size|| MP_size_column>Block_size ||(MP_size_row-1)*(MP_size_column)<3)
+%         Size_Checker=1;
+%         display('Warning: Selected sizes are not suitable, Please follow the instruction:');
+%         display('1) Block size value should be greater than Row and Column sizes');
+%         display('2) Generating 95 unique Matrix Pattern Based on selected Block size and Matrix Pattern sizes is impossible\n')
+%         display('Please enter new values');
+%     end
+% end
+
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 
 tStart = tic;
 temp_Cover_Image=Cover_Image;
@@ -149,8 +192,13 @@ text1_temp=[text1_temp ']'];
 
 blo_num_first=1;
 
+<<<<<<< HEAD
 c_b=1; % counter_block
 if(isempty(w)==1)
+=======
+c_b=1; 
+if(isempty(w)==1)% in this case the valuses that certain the correspondence of the other blocks could not be hidden in the image 
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
     fprintf('Warning: No message can be hidden in this image. Please change the cover image\n');
     continue;
 else
@@ -207,6 +255,7 @@ if  ~isempty(text)
      numb_of_hidd_char=ltxt-length(text);
      Stego_image=Cover_Image;
      Stego_image(:,:,3)=b1;
+<<<<<<< HEAD
      folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/not-suitable/ten-percent';
      imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
 else
@@ -214,6 +263,16 @@ else
      Stego_image = Cover_Image;
      Stego_image(:,:,3) = b1;
      folder='/home/amirfarhad/Desktop/Steganography/Results/MP-capacity-128x128-3x2/suitable/ten-percent';
+=======
+     folder='Address of Folder for saving the generated Stego-image';
+     imwrite(Stego_image,fullfile(folder,sprintf('%d_Hidden_characters_%d.ppm',k, numb_of_hidd_char)));
+    
+else %In the else part all of the secret message could not be hidden in the selected cover image.
+    numb_of_hidd_char = ltxt-length(text);
+     Stego_image = Cover_Image;
+     Stego_image(:,:,3) = b1;
+     folder='Address of Folder for saving the generated Stego-image';
+>>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
      imwrite(Stego_image,fullfile(folder,sprintf('%d.ppm',k)));
 end
 end
