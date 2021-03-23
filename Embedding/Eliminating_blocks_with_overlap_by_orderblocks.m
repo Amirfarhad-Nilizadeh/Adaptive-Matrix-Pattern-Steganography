@@ -1,6 +1,4 @@
-%In this work the top left 64 by 64 block is used for hiding size of matrix pattern and block size that a user selected. 
-%Also, order blocks use for hiding the location of blocks which are ordered by a pre-processing work 
-%In this program 'B' by 'B' blocks that have overlap with order blocks will be detected and eliminated from the list.
+%This function is used for eleminating orderblocks form 
 function [queue_MP_w_f queue_MP_h_f] = Eliminating_blocks_with_overlap_by_orderblocks(img,t1,t2,t3,a11,a21,a12,a22)
 if nargin==4, t1=64;t2=64;t3=48; end
 
@@ -76,16 +74,9 @@ q=length(a11);
 flag_q=0;
 MPqueue=[];
 
-<<<<<<< HEAD
 vector=(t1-1)*t2; 
 horizontal=(t2-1)*t1;
 di_1=(t1-1)*(t1-1);
-=======
-vector=(t1-1)*t2; % maximum halat ofoghi
-horizontal=(t2-1)*t1;% maximum halat amodi
-di_1=(t1-1)*(t1-1);% maximum halat ghotri
-
->>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 di_2=di_1;
 total=horizontal+di_1+di_2;
 
@@ -262,19 +253,15 @@ variance=var(double(arr));
       numh=[numh hh];
       count=count+1;
    end
-<<<<<<< HEAD
    
  
  
  end%***********************************************************************
 end %**************************************************************************
-=======
- end
-end 
->>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 
  queue_MP_w=[s_c_w1 s_c_w2 s_c_w3 e_c_w1 e_c_w2 e_c_w3 e_s_w1 e_s_w2 e_s_w3  s_s_w1  s_s_w2  s_s_w3];
  queue_MP_h=[s_c_h1 s_c_h2 s_c_h3 e_c_h1 e_c_h2 e_c_h3 e_s_h1 e_s_h2 e_s_h3  s_s_h1  s_s_h2  s_s_h3];
+ 
  
  ft=length(queue_MP_w);
 loos_blo=0;

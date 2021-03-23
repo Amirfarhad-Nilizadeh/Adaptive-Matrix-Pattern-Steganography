@@ -2,11 +2,9 @@ function [queue_MP_w_f, queue_MP_h_f] = Preprocessing_algorithm(img,t1)
 if nargin==1, t1=64;t2=64; end
 img_i=Intensity(img);
 t2=t1;
-[row_size,column_size]=size(img_i);
-<<<<<<< HEAD
 
-=======
->>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
+[row_size,column_size]=size(img_i);
+
 nh=fix(row_size/t1);
 nw=fix(column_size/t2);
 
@@ -244,15 +242,9 @@ variance=var(double(arr));
       numw=[numw column_size];
       numh=[numh row_size];
       count=count+1;
-<<<<<<< HEAD
    end 
   end %***********************************************************************
 end %**************************************************************************
-=======
-   end
-  end
-end 
->>>>>>> b23bdcb50dbaa19ba6612cf6a68cef5d9d807e23
 
  queue_MP_w_f=[s_c_w1 s_c_w2 s_c_w3 e_c_w1 e_c_w2 e_c_w3 e_s_w1 e_s_w2 e_s_w3  s_s_w1  s_s_w2  s_s_w3];
  queue_MP_h_f=[s_c_h1 s_c_h2 s_c_h3 e_c_h1 e_c_h2 e_c_h3 e_s_h1 e_s_h2 e_s_h3  s_s_h1  s_s_h2  s_s_h3];
